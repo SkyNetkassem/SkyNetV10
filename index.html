@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سكاي مانج لإدارة الميكروتك</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        header {
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+        }
+        header img {
+            max-width: 120px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            margin: 5px 0 10px;
+        }
+        p.subtitle {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .container {
+            padding: 40px 20px;
+        }
+        .btn {
+            display: block;
+            width: 90%;
+            max-width: 380px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 1.2rem;
+            color: #fff;
+            background: #007BFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .description {
+            font-size: 0.9rem;
+            margin: -15px auto 30px;
+            max-width: 360px;
+            color: #555;
+            line-height: 1.4;
+        }
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            background: #ddd;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 600px) {
+            header img { max-width: 80px; }
+            .btn { font-size: 1rem; padding: 12px; }
+        }
+        /* النافذة المنبثقة لكلمة المرور */
+        #passwordPrompt {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        #passwordBox {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+        }
+        #passwordBox input {
+            width: 80%;
+            padding: 10px;
+            margin-top: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #passwordBox button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        #passwordBox button:hover {
+            background: #0056b3;
+        }
+        #error {
+            color: red;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نافذة كلمة المرور -->
+    <div id="passwordPrompt">
+        <div id="passwordBox">
+            <h2>أدخل كلمة المرور للمتابعة</h2>
+            <input type="password" id="passwordInput" placeholder="كلمة المرور">
+            <br>
+            <button onclick="checkPassword()">دخول</button>
+            <p id="error">كلمة المرور غير صحيحة</p>
+        </div>
+    </div>
+
+    <!-- الرأس -->
+    <header>
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="شعار سكاي مانج">
+        <h1>سكاي مانج لإدارة الميكروتك</h1>
+        <p class="subtitle">الواجهة الموحدة للوصول إلى الأنظمة</p>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <a href="SkyMan3/" class="btn" onclick="storeAccess('SkyMan3')">إدارة الميكروتك المتقدمة</a>
+        <div class="description">
+            احصل على تحكم متقدم في أجهزة MikroTik، إعداد الشبكات، والمراقبة الفورية.
+        </div>
+
+        <a href="SkyNetV4/" class="btn" onclick="storeAccess('SkyNetV4')">إدارة كروت هوتسبوت</a>
+        <div class="description">
+            إصدار ومتابعة بطاقات الـ Hotspot بسهولة وفعالية.
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        &copy; 2025 سكاي مانج - جميع الحقوق محفوظة
+    </footer>
+
+    <script>
+        // الكلمة الصحيحة (يمكنك تغييرها)
+        const correctPassword = "2362016A7t";
+
+        // تحقق كلمة المرور
+        function checkPassword() {
+            const input = document.getElementById("passwordInput").value;
+            if (input === correctPassword) {
+                sessionStorage.setItem("authenticated", "true");
+                document.getElementById("passwordPrompt").style.display = "none";
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+
+        // إذا سبق الدخول بنجاح
+        window.onload = function () {
+            if (sessionStorage.getItem("authenticated") === "true") {
+                document.getElementById("passwordPrompt").style.display = "none";
+            }
+        }
+
+        // تخزين آخر مشروع
+        function storeAccess(name) {
+            localStorage.setItem("lastAccessedProject", name);
+        }
+    </script>
+
+</body>
+</html>
