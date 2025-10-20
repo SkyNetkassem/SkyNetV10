@@ -5,6 +5,8 @@ const assets = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./SkyNetV3",
+  "SkyNetV4",
   "./SkyNetV4/style/style.css",
   "./SkyNetV4/script/script.js",
   fallbackPage,
